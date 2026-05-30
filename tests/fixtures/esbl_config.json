@@ -1,0 +1,13 @@
+{
+	"RoundHalfDilutions": true,
+	"IncludeInterpretationComments": true,
+	"EnabledExpertInterpretationRules": [
+		"ESBL-CONFIRMED"
+	],
+	"GuidelineYear": 2026,
+	"PrioritizedBreakpointTypes": [ "Human" ],
+	"PrioritizedSitesOfInfection": [],
+	"DisabledSitesOfInfection": [],
+	"HorizontalAntibioticResults": true,
+	"UserDefinedBreakpointsFile": ""
+}

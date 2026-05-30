@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "amrie"
+version = "1.0.0"
+description = "AMRIE antimicrobial susceptibility interpretation engine (Python port)"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "typer>=0.9",
+    "pandas>=2.0",
+    "orjson>=3.9",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0"]
+
+[project.scripts]
+amrie = "amrie.cli:app"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+amrie = ["resources/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

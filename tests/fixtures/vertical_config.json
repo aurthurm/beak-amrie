@@ -1,0 +1,15 @@
+{
+	"RoundHalfDilutions": true,
+	"IncludeInterpretationComments": false,
+	"EnabledExpertInterpretationRules": [
+		"BLNAR-HFLU",
+		"MRS",
+		"ICR"
+	],
+	"GuidelineYear": 2026,
+	"PrioritizedBreakpointTypes": [ "Human", "Animal", "ECOFF" ],
+	"PrioritizedSitesOfInfection": [],
+	"DisabledSitesOfInfection": [],
+	"HorizontalAntibioticResults": false,
+	"UserDefinedBreakpointsFile": ""
+}
