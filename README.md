@@ -17,6 +17,7 @@ A faithful Python implementation of the [AMRIE](https://github.com/rlabinc/AMRIE
   - [Python API](#python-api)
 - [Interpretation results](#interpretation-results)
 - [Configuration](#configuration)
+- [Web UI & REST API](#web-ui--rest-api)
 - [Running tests](#running-tests)
 - [Documentation](#documentation)
 
@@ -37,6 +38,9 @@ pip install -e ".[dev]"
 
 # Production install from source
 pip install .
+
+# Web UI + REST API (NiceGUI)
+pip install -e ".[web]"
 ```
 
 ---
@@ -147,6 +151,31 @@ Full reference: [`docs/configuration.md`](docs/configuration.md)
 
 ---
 
+## Web UI & REST API
+
+A browser-based interface and REST API wrap the same interpretation engine as the CLI.
+
+```bash
+pip install -e ".[web]"
+amrie-web          # or: python web/main.py
+```
+
+Open `http://localhost:8080` for the UI (Single, File Mode, QC tabs). Interactive API docs are at `/docs`.
+
+```bash
+# Example REST call — Enterococcus, penicillin disk → "S"
+curl -s -X POST http://localhost:8080/api/interpret/single \
+  -H "Content-Type: application/json" \
+  -d '{"organism_code":"ent","whonet_abx_code":"PEN","measurement":"19",
+       "guidelines":["CLSI"],"test_method":"disk","potency":"10units","guideline_year":2026}'
+```
+
+Docker: `docker compose up --build` (port 8080, set `STORAGE_SECRET` in production).
+
+Full guide: [`docs/web.md`](docs/web.md)
+
+---
+
 ## Running tests
 
 ```bash
@@ -172,3 +201,4 @@ pytest tests/test_qc.py  # One file
 | [`docs/use-cases.md`](docs/use-cases.md) | Practical examples and integration patterns |
 | [`docs/development.md`](docs/development.md) | Dev setup, contributing, updating data files |
 | [`docs/upstream-sync.md`](docs/upstream-sync.md) | C# upstream commit tracker — where to start diffing for new changes |
+| [`docs/web.md`](docs/web.md) | Web UI, REST API, Docker deployment |

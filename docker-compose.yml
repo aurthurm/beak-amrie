@@ -1,0 +1,8 @@
+services:
+  amrie-web:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - STORAGE_SECRET=change-me-in-production
+    restart: unless-stopped

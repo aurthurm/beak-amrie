@@ -199,3 +199,24 @@ Worker count defaults to `min(32, cpu_count + 4, len(items))`, matching the patt
 | `FileInterpretationParameters.cs` | `io_library.py` |
 | `Interpretation CLI/Program.cs` | `cli.py` |
 | `Translations/Resources.resx` | `messages.py` (English only) |
+
+---
+
+## Web layer
+
+The [`web/`](../web/) package provides a NiceGUI browser UI and REST API. It runs in the same process as FastAPI (via NiceGUI's `app` object) and calls the public `amrie` API — never modifying engine modules under `src/amrie/`.
+
+```
+Browser / HTTP client
+        │
+        ▼
+web/pages/*  +  web/api/*
+        │
+        ▼
+web/helpers.py  (config builders, serializers)
+        │
+        ▼
+amrie.*  (interpret_single, interpret_isolates, read_configuration, …)
+```
+
+See [`web.md`](web.md) for installation, routes, endpoint reference, and deployment.

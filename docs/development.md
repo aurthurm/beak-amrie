@@ -13,6 +13,9 @@ source .venv/bin/activate      # Linux / macOS
 
 # Install in editable mode with dev dependencies
 pip install -e ".[dev]"
+
+# Include web UI for local testing
+pip install -e ".[dev,web]"
 ```
 
 ---
@@ -70,6 +73,8 @@ pytest tests/test_parity.py::TestGoldenFile -v
 AMRIE-py/
 ├── README.md
 ├── pyproject.toml
+├── Dockerfile                  ← web container image
+├── docker-compose.yml          ← local web deployment
 ├── docs/                       ← documentation (this folder)
 │   ├── architecture.md
 │   ├── breakpoint-selection.md
@@ -78,7 +83,16 @@ AMRIE-py/
 │   ├── data-formats.md
 │   ├── development.md          ← this file
 │   ├── expert-rules.md
-│   └── use-cases.md
+│   ├── use-cases.md
+│   └── web.md                  ← web UI + REST API guide
+├── web/                        ← NiceGUI + FastAPI web application
+│   ├── main.py
+│   ├── state.py
+│   ├── helpers.py
+│   ├── api/
+│   ├── pages/
+│   ├── components/
+│   └── models/
 ├── src/
 │   └── amrie/
 │       ├── resources/          ← bundled data files (shipped with the package)
@@ -216,6 +230,15 @@ _intrinsic_cache.clear()  # clears _intrinsic_cache
 | `pandas` | Loading TSV resource files | 2.0 |
 | `typer` | CLI framework | 0.9 |
 | `orjson` | Fast JSON serialisation for output files | 3.9 |
+
+### Web optional extra (`pip install -e ".[web]"`)
+
+| Package | Purpose | Min version |
+|---|---|---|
+| `nicegui` | Web UI + embedded FastAPI | 2.0 |
+| `httpx` | HTTP client (NiceGUI dependency) | 0.27 |
+
+See [`web.md`](web.md) for running and deploying the web application.
 
 ### Development only
 

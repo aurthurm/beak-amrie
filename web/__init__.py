@@ -1,0 +1,1 @@
+"""AMRIE NiceGUI web application."""
